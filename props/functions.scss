@@ -1,0 +1,27 @@
+@use "config" as config;
+@use "./default-properties.scss" as def_properties;
+@use "ungic-sass-utils" as utils;
+@use "sass:meta";
+@use "sass:map";
+@use "./property-handlers.scss" as property-handlers;
+
+
+$properties: config.$properties;
+$default_properties: meta.module-variables(def_properties);
+
+
+@function properties($defaults: false) {
+  @if $defaults {
+    @return utils.merge($default_properties, $properties);
+  }
+  @return $properties;
+}
+
+@function props($defaults: false) {
+  @return properties($defaults);
+}
+
+@function prop($prop, $args...) {
+  $props: utils.merge($default_properties, $properties);
+  @return property-handlers.handler($prop, $args...);
+}

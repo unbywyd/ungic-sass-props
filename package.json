@@ -1,0 +1,26 @@
+{
+  "name": "ungic-sass-props",
+  "version": "1.0.1",
+  "description": "This sass module allows you to work with properties by combining with standard values and provides an api to get project properties",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unbywyd/ungic-sass-props.git"
+  },
+  "keywords": [
+    "sass",
+    "utils",
+    "tools",
+    "helpers"
+  ],
+  "sass": "props/index.scss",
+  "author": "unbywyd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unbywyd/ungic-sass-props/issues"
+  },
+  "homepage": "https://github.com/unbywyd/ungic-sass-props#readme"
+}

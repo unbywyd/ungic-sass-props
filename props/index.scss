@@ -1,0 +1,14 @@
+/*
+*		Framework core file, don't change it!
+*		You should not change this file.
+*/
+@use "sass:meta";
+$properties: () !default;
+// Init
+@use "config.scss" with (
+    $properties: $properties
+);
+
+@forward "./functions.scss" hide $properties;
+@forward "config";
+
