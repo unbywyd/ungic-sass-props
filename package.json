@@ -1,6 +1,6 @@
 {
   "name": "ungic-sass-props",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This sass module allows you to work with properties by combining with standard values and provides an api to get project properties",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/unbywyd/ungic-sass-props#readme",
   "devDependencies": {
-    "ungic-sass-utils": "^1.1.2"
+    "ungic-sass-utils": "^1.1.3"
   }
 }

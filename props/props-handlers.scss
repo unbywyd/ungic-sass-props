@@ -46,7 +46,7 @@
     $storage: (top:0, right:0, bottom:0, left:0);
   
     @if map.has-key($props, $prop) {
-        @if type-of(map.get($props, $prop)) == map {
+        @if meta.type-of(map.get($props, $prop)) == map {
           $storage: map.merge($storage, map.get($props, $prop));
         } @else {
           $storage: parse-pm(map.get($props, $prop));
@@ -79,20 +79,20 @@
 @function border-handler($border, $properties) {
     @if map.has-key($properties, "border") {
         $_border: map.get($properties, "border");
-        @if type-of($_border) == map {
+        @if meta.type-of($_border) == map {
             $border: map.merge($border, $_border);
         } @else if($_border == inherit) {
             $border: map.merge($border, (
                 width: inherit,
                 style: inherit
             ));
-        } @else if type-of($_border) != list {
+        } @else if meta.type-of($_border) != list {
             $_border: ($_border, );
         }
 
         $styles: (dotted, dashed, solid, double, groove, ridge, inset, outset, none, hidden);
         @each $value in $_border {
-            @if type-of($value) == number {
+            @if meta.type-of($value) == number {
                 $border: map.merge($border, (
                     width: $value
                 ));
@@ -102,7 +102,7 @@
                     style: $value
                 ));
             }
-            @if type-of($value) == color {
+            @if meta.type-of($value) == color {
                 $border: map.merge($border, (
                     color: $value
                 ));
@@ -132,14 +132,14 @@
     $styles: (italic oblique);
     $variants: (small-caps);
     @if map.has-key($properties, font) {
-        @if type-of(map.get($properties, font)) == map {
+        @if meta.type-of(map.get($properties, font)) == map {
             $font: map.merge($font, map.get($properties, font));
         } @else {
             $_font: map.get($properties, font);
             @if $_font == inherit {
                 $font: map.merge($font, (style: inherit, size: inherit, variant: inherit, family: inherit, weight: inherit));
             } @else {
-                @if type-of($_font) != list {
+                @if meta.type-of($_font) != list {
                     $_font: ($_font, );
                 }
                 @each $value in $_font {
@@ -151,14 +151,14 @@
                     }
                     @else if list.index($weights, $value) {
                        $font: map.merge($font, (weight: $value));
-                    } @else if type-of($value) == number {
+                    } @else if meta.type-of($value) == number {
 
                         @if not math.is-unitless($value) {
                             $font: map.merge($font, (size: $value));
                         } @else {
                             $font: map.merge($font, (line-height: $value));
                         }
-                    } @else if type-of($value) == string  {
+                    } @else if meta.type-of($value) == string  {
                         $font: map.merge($font, (family: $value));
                     }
                 }
@@ -192,11 +192,11 @@
     $repeats: (no-repeat repeat repeat-x repeat-y);
 
     @if map.has-key($properties, background) {
-        @if type-of(map.get($properties, background)) == map {
+        @if meta.type-of(map.get($properties, background)) == map {
             $background: map.merge($background, map.get($properties, background));
         } @else {
             $_bg: map.get($properties, background);
-            @if type-of($_bg) != list {
+            @if meta.type-of($_bg) != list {
                 $_bg: ($_bg, );
             }
             $position: ();
@@ -207,9 +207,9 @@
                 @if list.index($repeats, $value) {
                     $background: map.merge($background, (repeat: $value));
                 }
-                @if type-of($value) == string and str.index($value, 'url(') {
+                @if meta.type-of($value) == string and str.index($value, 'url(') {
                     $background: map.merge($background, (image: $value));
-                } @else if type-of($value) == number or list.index($positions, $value) {
+                } @else if meta.type-of($value) == number or list.index($positions, $value) {
                     @if list.length($position) < 2 {
                         $position: list.append($position, $value, space);
                         @if list.index($_bg, $value) + 1 <= list.length($_bg) {
@@ -244,7 +244,7 @@
 
     @if map.has-key($properties, background-position) {
         $position: map.get($properties, background-position);
-        @if type-of($position) != list {
+        @if meta.type-of($position) != list {
             $position: ($position $position);
         }
         $background: map.merge($background, (position: $position));
@@ -256,7 +256,7 @@
     $positions: (inside outside);
     $types: (circle disc square armenian decimal decimal-leading-zero georgian lower-alpha lower-greek lower-latin lower-roman upper-alpha upper-latin upper-roman);
     @if(map.has-key($properties, list-style)) {
-        @if type-of(map.get($properties, list-style)) == map {
+        @if meta.type-of(map.get($properties, list-style)) == map {
             $list: map.merge($list, map.get($properties, list-style));
         } @else {
             $_list: map.get($properties, list-style);
@@ -270,7 +270,7 @@
                     @if list.index($types, $value) {
                         $list: map.merge($list, (type: $value));
                     }
-                    @if type-of($value) == string and str.index($value, 'url(') {
+                    @if meta.type-of($value) == string and str.index($value, 'url(') {
                         $list: map.merge($list, (image: $value));
                     }
                 }
@@ -292,7 +292,7 @@
 @function border-radius-handler($radius, $properties) {
     @if map.has-key($properties, border-radius) {
 
-        @if type-of(map.get($properties, border-radius)) == map {
+        @if meta.type-of(map.get($properties, border-radius)) == map {
             $radius: map.merge($radius, map.get($properties, border-radius));
         } @else {
             $_radius: map.get($properties, "border-radius");
@@ -304,10 +304,10 @@
                     bottom-left:inherit
                 ));
             } @else {
-                @if type-of($_radius) == number {
+                @if meta.type-of($_radius) == number {
                     $_radius: ($_radius, );
                 }
-                @if type-of($_radius) == list {
+                @if meta.type-of($_radius) == list {
                     @if list.length($_radius) == 1 {
                         $radius: map.merge($radius, (
                             top-left:list.nth($_radius, 1),
@@ -363,20 +363,20 @@
 @function outline-handler($outline, $properties) {
     @if map.has-key($properties, "outline") {
         $_outline: map.get($properties, "outline");
-        @if type-of($_outline) == map {
+        @if meta.type-of($_outline) == map {
             $outline: map.merge($outline, $_outline);
         } @else if($_outline == inherit) {
             $outline: map.merge($outline, (
                 width: inherit,
                 style: inherit
             ));
-        } @else if type-of($_outline) != list {
+        } @else if meta.type-of($_outline) != list {
             $_outline: ($_outline, );
         }
 
         $styles: (dotted, dashed, solid, double, groove, ridge, inset, outset, none, hidden);
         @each $value in $_outline {
-            @if type-of($value) == number {
+            @if meta.type-of($value) == number {
                 $outline: map.merge($outline, (
                     width: $value
                 ));
@@ -386,7 +386,7 @@
                     style: $value
                 ));
             }
-            @if type-of($value) == color {
+            @if meta.type-of($value) == color {
                 $outline: map.merge($outline, (
                     color: $value
                 ));
