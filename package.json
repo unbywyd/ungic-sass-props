@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/unbywyd/ungic-sass-props/issues"
   },
-  "homepage": "https://github.com/unbywyd/ungic-sass-props#readme"
+  "homepage": "https://github.com/unbywyd/ungic-sass-props#readme",
+  "devDependencies": {
+    "ungic-sass-utils": "^1.1.2"
+  }
 }
